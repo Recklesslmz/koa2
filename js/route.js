@@ -1,6 +1,6 @@
 const fs = require('fs')
 const Koa = require('koa')
-const route = require('koa-route')
+const router = require('koa-router')()
 const app = new Koa()
 
 const main = ctx => {
@@ -11,7 +11,6 @@ const main = ctx => {
     } else {
         ctx.response.body = 'Koa'
     }
-
 }
 
 const first = ctx => {
@@ -24,6 +23,6 @@ const second = ctx => {
 
 }
 
-app.use('/', first)
-app.use('/second', second)
+router.use('/', first)
+router.use('/second', second)
 app.listen(3000)
