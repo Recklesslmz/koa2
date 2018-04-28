@@ -63,11 +63,14 @@ let findUserData = (name) => {
         return query(_sql)
     }
     //注册用户
-let signIn = function(value) {
-    let _sql = `indert into `
+let signUp = function(value) {
+    let { userName, mobile, password } = value
+    let _sql = `insert into user(userName,mobile,password) values("${userName}","${mobile}","${password}");`;
+    return query(_sql)
 }
 module.exports = {
     query,
     insertData,
-    findUserData
+    findUserData,
+    signUp
 }

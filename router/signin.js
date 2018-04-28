@@ -3,6 +3,15 @@ const router = require('koa-router')()
 const userModal = require('../mysql/sql')
 const app = new Koa()
 
+
+router.post('/register', async(ctx, next) => {
+    let { userName, mobile, password } = ctx.request.body
+    await userModal.signUp({ userName, mobile, password }).then(result => {
+        console.log(result)
+        ctx.body = Object.assign({ data: 200 })
+    })
+})
+
 router.get('/getName', async(ctx) => {
     let res,
         postsLength,
